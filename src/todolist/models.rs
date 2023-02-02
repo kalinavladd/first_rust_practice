@@ -5,9 +5,10 @@ use apalis::prelude::*;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Email {
+    pub from: String,
     pub to: String,
-    pub subject: String,
     pub text: String,
+    pub subject: String,
 }
 
 impl Job for Email {

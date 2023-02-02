@@ -1,7 +1,6 @@
-use actix_web::{get, post, delete, put, web, Responder, HttpResponse, services};
+use actix_web::{get, post, web, Responder, HttpResponse};
 use crate::{AppState};
-use super::models::{CreateUser, User, Article, Email};
-use sqlx::{self, FromRow};
+use super::models::{CreateUser, User, Email};
 use apalis::prelude::*;
 use apalis::redis::RedisStorage;
 
@@ -54,7 +53,7 @@ async fn create_user(state: web::Data<AppState>, body: web::Json<CreateUser>) ->
         .await
     {
         Ok(users) => HttpResponse::Ok().json(users),
-        Err(e) => { HttpResponse::NotFound().json("Failed")
+        Err(e) => { HttpResponse::NotFound().json(format!("{}", e))
         },
     }
 }
