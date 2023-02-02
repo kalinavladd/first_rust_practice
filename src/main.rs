@@ -1,15 +1,11 @@
 mod todolist;
 use actix_web::{get, web, App, HttpServer, middleware::Logger};
-use serde::{Deserialize, Serialize};
 use apalis::prelude::*;
 use apalis::redis::RedisStorage;
 use todolist::services;
 use dotenv::dotenv;
-use env_logger::fmt::Color::Red;
 use futures::future;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres};
-use log::info;
-use sqlx::postgres::PgSeverity::Log;
 use todolist::tasks::send_email;
 use anyhow::Result;
 use apalis::layers::TraceLayer;
