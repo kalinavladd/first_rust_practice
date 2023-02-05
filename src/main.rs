@@ -12,7 +12,6 @@ use apalis::layers::TraceLayer;
 
 struct AppState {
     db: Pool<Postgres>,
-    // redis: RedisStorage<..>,
 }
 
 
@@ -68,5 +67,4 @@ async fn main() -> Result<()> {
 
     future::try_join(http, worker).await.expect("failed");
     Ok(())
-
 }
